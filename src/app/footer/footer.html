@@ -1,0 +1,7 @@
+<footer [class.backcolor]="username !== '' ">
+  @if (username) {
+    <p>Subscribe! Hello {{ username }}</p>
+  }
+  <input type="text" [(ngModel)]="username" placeholder="Type name" />
+  <button (click)="onSubscribe()" [style.color]="username !== '' ? 'red' : 'blue'">Podpisatsa!</button>
+</footer>
