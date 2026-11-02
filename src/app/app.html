@@ -1,22 +1,5 @@
 <app-header [title]="title"></app-header>
 
-<h1 (click)="showAler()">My note</h1>
-
-<ul>
-  @for (note of notes(); track note.id) {
-    <li>
-      <strong>{{ note.title }}</strong>
-      {{ note.content }}
-      <small>{{ note.createdAt | date:'short' }}</small>
-    </li>
-  }
-</ul>
-
-<h2>Add note</h2>
-
-<input type="text" [(ngModel)]="newNote().title" placeholder="Title">
-<textarea [(ngModel)]="newNote().content" placeholder="Text"></textarea><br>
-
-<button (click)="addNote()">Add</button>
+<router-outlet></router-outlet>
 
 <app-footer (subscribeClicked)="handleSubscribe()"></app-footer>

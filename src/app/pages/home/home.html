@@ -1,0 +1,14 @@
+<h1 (click)="showAler()">My note</h1>
+
+<ul>
+  @for (note of notes(); track note.id) {
+    <li>
+      <strong>{{ note.title }}</strong>
+      {{ note.content | noteShortener:5 }}
+      <a [routerLink]="['/note', note.id]">Info</a>
+      <small>{{ note.createdAt | date:'short' }}</small>
+    </li>
+  }
+</ul>
+
+<app-note-add></app-note-add>

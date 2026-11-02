@@ -1,0 +1,53 @@
+<h2>Add note</h2>
+
+<form #noteForm="ngForm" (ngSubmit)="addNote(noteForm)">
+  <div>
+    <label>Title</label><br />
+    <input
+      type="text"
+      name="title"
+      [(ngModel)]="newNote().title"
+      placeholder="Title"
+      required
+      minlength="3"
+      maxlength="50"
+      #titleRef="ngModel"
+    />
+    @if (submited && titleRef.invalid) {
+      <div style="color: red">
+        @if (titleRef.errors?.['required']) {
+          <small>Title independet</small>
+        }
+        @if (titleRef.errors?.['minlength']) {
+          <small>Title minimym 3 symbol</small>
+        }
+        @if (titleRef.errors?.['maxlength']) {
+          <small>Title maximym 50 symbol</small>
+        }
+      </div>
+    }
+  </div>
+  <div>
+    <label>Content</label><br />
+    <textarea
+      [(ngModel)]="newNote().content"
+      placeholder="Text"
+      name="content"
+      required
+      minlength="5"
+      #contentRef="ngModel"
+    ></textarea
+    ><br />
+    @if (submited && contentRef.invalid) {
+      <div style="color: red">
+        @if (contentRef.errors?.['required']) {
+          <small>Content independet</small>
+        }
+        @if (contentRef.errors?.['minlength']) {
+          <small>Content minimym 3 symbol</small>
+        }
+      </div>
+    }
+  </div>
+  <button type="submit">Add</button>
+</form>

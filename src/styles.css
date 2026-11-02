@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+﻿:root {
+  color-scheme: light;
+  --ink: #203a33;
+  --muted: #738079;
+  --accent: #28694f;
+  --line: #dfe5dd;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--ink);
+  background: #f5f6f0;
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: radial-gradient(ellipse at 90% 5%, #e4eddf, transparent 45%), #f5f6f0;
+  line-height: 1.65;
+}
+button,
+input,
+textarea {
+  font: inherit;
+}
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 13px 16px;
+  background: #fff;
+  color: var(--ink);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #8a958d;
+}
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px #28694f14;
+}
+button {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--accent);
+  color: white;
+  padding: 12px 26px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+button:hover {
+  background: #1d533d;
+  box-shadow: 0 6px 16px #203a331c;
+  transform: translateY(-1px);
+}
+button:active {
+  transform: translateY(0);
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #6d9d65;
+  outline-offset: 4px;
+}
+::selection {
+  background: #d2e8bd;
+  color: #203a33;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}

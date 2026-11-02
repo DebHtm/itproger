@@ -1,3 +1,51 @@
-.backcolor {
-  background-color: yellow;
+﻿:host {
+  display: block;
+  border-top: 1px solid var(--line);
+  background: #eaf0e4;
+}
+footer {
+  max-width: 1120px;
+  margin: auto;
+  padding: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+footer.backcolor {
+  background: #e0ebd9;
+}
+p {
+  margin: 0 auto 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+input {
+  width: 240px;
+  background: #ffffffc9;
+}
+button {
+  background: #fff;
+  border-color: #cfdbca;
+  box-shadow: 0 2px 4px #203a3305;
+}
+button:hover {
+  background: #f5f8ef;
+}
+@media (max-width: 640px) {
+  footer {
+    padding: 24px 20px;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+  p {
+    width: 100%;
+  }
+  input {
+    flex: 1 1 180px;
+    width: auto;
+    min-width: 0;
+  }
 }

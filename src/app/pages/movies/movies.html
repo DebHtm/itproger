@@ -1,0 +1,34 @@
+<h2>Search Movies</h2>
+
+<div class="movie-search">
+<input
+  type="text"
+  [(ngModel)]="searchTitle"
+  placeholder="Enter movie title"
+/>
+<button (click)="search()">Search</button>
+</div>
+
+@if (errorMassage()) {
+  <p class="error">{{ errorMassage() }}</p>
+}
+
+@if (movies().length > 0) {
+  <section class="movies-grid" aria-label="Movies">
+  @for (movie of movies(); track movie.imdbID) {
+    <article class="movie-card">
+      <div class="movie-poster">
+        @if (movie.Poster && movie.Poster !== 'N/A') {
+          <img [src]="movie.Poster" [alt]="movie.Title" loading="lazy">
+        } @else {
+          <span class="poster-placeholder">No poster available</span>
+        }
+      </div>
+      <div class="movie-info">
+        <strong>{{ movie.Title }}</strong>
+        <span class="movie-year">{{ movie.Year }}</span>
+      </div>
+    </article>
+  }
+  </section>
+}
