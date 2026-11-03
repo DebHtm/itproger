@@ -2,6 +2,12 @@
 
 A learning project built while studying Angular, combining a notes interface with movie search through the OMDb API. The focus is on practising Angular fundamentals in a small application: components, services, routing, forms and asynchronous data.
 
+## Live demo
+
+[Open demo](https://debhtm.github.io/itproger/)
+
+Available after enabling GitHub Pages with GitHub Actions as its source and completing the first deployment. Pushes to main deploy updates automatically.
+
 ## Features
 
 - Browse sample notes and open an individual note using a route parameter.

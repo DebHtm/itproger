@@ -1,0 +1,39 @@
+name: Deploy demo to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/configure-pages@v5
+      - run: npm ci
+      - name: Build demo
+        env:
+          REPOSITORY_NAME: ${{ github.event.repository.name }}
+        run: npm run build -- --configuration demo --base-href "/$REPOSITORY_NAME/"
+      - name: Prepare Angular route fallback
+        run: |
+          cp dist/itproger/browser/index.csr.html dist/itproger/browser/404.html
+          touch dist/itproger/browser/.nojekyll
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/itproger/browser
+      - id: deployment
+        uses: actions/deploy-pages@v4
