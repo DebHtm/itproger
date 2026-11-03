@@ -37,6 +37,11 @@
             }
           },
           "configurations": {
+            "demo": {
+              "outputMode": "static",
+              "ssr": false,
+              "outputHashing": "all"
+            },
             "production": {
               "budgets": [
                 {
