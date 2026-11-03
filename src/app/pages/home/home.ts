@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { NoteService } from '../../service/note';
 import { DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -13,10 +13,6 @@ import { NoteShortenerPipe } from '../../pipes/note-shortener-pipe';
 })
 export class Home {
   constructor(private noteService: NoteService) {}
-
-  showAler() {
-    alert('biba');
-  }
 
   protected get notes() {
     return this.noteService.getNotes();

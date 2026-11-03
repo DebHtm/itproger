@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { MoviesService } from '../../service/movies';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Movie } from '../../models/movie.models';
 
 @Component({
   selector: 'app-movies',
@@ -13,7 +14,7 @@ export class Movies {
   constructor(private movieService: MoviesService) {}
 
   searchTitle: string = '';
-  movies = signal<any[]>([]);
+  movies = signal<Movie[]>([]);
   errorMassage = signal('');
 
   search() {
@@ -22,7 +23,7 @@ export class Movies {
 
     this.movieService.searchMovie(title).subscribe({
       next: (response) => {
-        if (response.Search) {
+        if (response.Response === 'True') {
           this.movies.set(response.Search);
           this.errorMassage.set('');
         } else {

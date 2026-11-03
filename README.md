@@ -1,59 +1,83 @@
-# angular-learning-project
+﻿# angular-learning-project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.29.
+A learning project built while studying Angular, combining a notes interface with movie search through the OMDb API. The focus is on practising Angular fundamentals in a small application: components, services, routing, forms and asynchronous data.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Browse sample notes and open an individual note using a route parameter.
+- Add notes through a template-driven form with required fields and length validation.
+- Shorten note previews with a custom pipe and format list dates with DatePipe.
+- Search movies by title and display posters, years and API error messages.
+- Responsive CSS layouts using Flexbox and Grid.
 
-```bash
-ng serve
-```
+## Stack and concepts practised
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 21 and TypeScript
+- Standalone components and component inputs/outputs
+- Angular Router and ActivatedRoute
+- Dependency injection and shared services
+- Signals for note storage and movie search results
+- HttpClient and RxJS Observables
+- FormsModule, ngModel and template-driven validation
+- Built-in and custom pipes
 
-## Code scaffolding
+The project includes Angular CLI-generated server-rendering and hydration configuration. This configuration is separate from the learning features described above.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Run locally
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Use a Node.js version supported by Angular 21 and npm.
 
 ```bash
-ng build
+git clone https://github.com/DebHtm/itproger.git
+cd itproger
+npm ci
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Open http://localhost:4200/.
 
-## Running unit tests
+Movie search requires an internet connection and a working OMDb API key. The current learning implementation sets the key in `src/app/service/movies.ts`. Browser-side API keys are visible to visitors; moving a key to a frontend environment file does not make it secret.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Note list and add-note form |
+| `/note/:id` | Note details |
+| `/movies` | Movie search |
+| `/about` | Placeholder page |
+
+## Source structure
+
+```text
+src/app/
+  components/note-add/  Note form and validation
+  header/              Shared header
+  footer/              Shared footer
+  models/              Note model
+  pages/               Routed pages
+  pipes/               Note preview pipe
+  service/             Notes state and movie API requests
+```
+
+## Development commands
 
 ```bash
-ng test
+npm run build        # Build the application
+npm test             # Run the configured unit test runner
 ```
 
-## Running end-to-end tests
+The repository includes generated starter tests. They need to be reviewed and updated for the current application; their presence does not indicate complete feature coverage or a passing test suite.
 
-For end-to-end (e2e) testing, run:
+## Current limitations and next steps
 
-```bash
-ng e2e
-```
+- Notes are stored in memory and reset on reload. There is no backend or persistence.
+- Missing note IDs need a user-friendly not-found state.
+- Movie search currently displays the returned page of results without pagination or a loading indicator.
+- Some form and API values still use `any`; explicit response and form types are a next step.
+- The About page and some interface text are unfinished.
+- Planned improvements include focused behaviour tests, accessibility checks and a deployed demo.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Learning context
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This is an educational project developed while following Angular learning materials, with AI assistance for styling and selected explanations and code changes. It is presented as practical learning work, with the current limitations documented above.
