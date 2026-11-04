@@ -14,6 +14,10 @@ import { NoteShortenerPipe } from '../../pipes/note-shortener-pipe';
 export class Home {
   constructor(private noteService: NoteService) {}
 
+  ngOnInit() {
+    this.noteService.fetchNotes();
+  }
+
   protected get notes() {
     return this.noteService.getNotes();
   }

@@ -1,38 +1,22 @@
 import { Injectable, signal } from '@angular/core';
 import { Note } from '../models/note.models';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NoteService {
-  private notes = signal<Note[]>([
-    {
-      id: 1,
-      title: 'Список покупок на неделю',
-      content: 'Купить молоко, яйца, свежие овощи, куриное филе и зелёный чай.',
-      createdAt: new Date(),
-    },
-    {
-      id: 2,
-      title: 'Идеи для нового проекта',
-      content:
-        'Сделать мобильное приложение для учёта личных финансов с красивыми графиками и тёмной темой.',
-      createdAt: new Date(),
-    },
-    {
-      id: 3,
-      title: 'Встреча с командой',
-      content:
-        'Обсудить архитектуру проекта, распределить задачи на спринт и согласовывать дедлайны.',
-      createdAt: new Date(),
-    },
-    {
-      id: 4,
-      title: 'Книги к прочтению',
-      content: '1. "Чистый код" (Роберт Мартин)\n2. "Грокаем алгоритмы" (Адитья Бхаргава)',
-      createdAt: new Date(),
-    },
-  ]);
+  private readonly apiUrl = 'http://localhost:3000/notes';
+
+  private notes = signal<Note[]>([]);
+
+  constructor(private http: HttpClient) {}
+
+  fetchNotes() {
+    this.http.get<Note[]>(this.apiUrl).subscribe((data) => {
+      this.notes.set(data);
+    });
+  }
 
   getNotes() {
     return this.notes;
@@ -46,6 +30,8 @@ export class NoteService {
       createdAt: new Date(),
     };
 
-    this.notes.update(notes => [...notes, newNote]);
+    this.http.post<Note>(this.apiUrl, newNote).subscribe((note) => {
+      this.notes.update((notes) => [...notes, newNote]);
+    });
   }
 }
