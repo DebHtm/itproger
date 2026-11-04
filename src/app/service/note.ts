@@ -30,8 +30,8 @@ export class NoteService {
       createdAt: new Date(),
     };
 
-    this.http.post<Note>(this.apiUrl, newNote).subscribe((note) => {
-      this.notes.update((notes) => [...notes, newNote]);
+    this.http.post<Note>(this.apiUrl, newNote).subscribe((savedNote) => {
+      this.notes.update((notes) => [...notes, savedNote]);
     });
   }
 }
